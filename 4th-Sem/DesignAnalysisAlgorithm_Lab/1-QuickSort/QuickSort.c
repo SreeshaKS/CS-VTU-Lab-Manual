@@ -5,13 +5,12 @@ Sort a given set of elements using the Quick Sort method and determine the time 
 */
 
 #include <stdio.h>
-#include <stdlib.h>
 
 int quickSort(int a[], int low, int high);
 int partition(int a[], int low, int high);
 
 int main() {
-    int a[100], n, i;
+    int a[1000], n, i;
 
     printf("Enter the number of elements: ");
     scanf("%d", &n);
@@ -66,3 +65,15 @@ int partition(int a[], int low, int high) {
         }
     }
 }
+
+/*
+Output
+------
+Enter the number of elements: 10
+
+Entering random values into array:
+41 67 34 0 69 24 78 58 62 64
+
+Sorted Elements are:
+0 24 34 41 58 62 64 67 69 78
+*/

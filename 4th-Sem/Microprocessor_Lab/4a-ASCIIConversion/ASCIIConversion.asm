@@ -3,28 +3,18 @@
 
 .model SMALL
 
-CLRSCR MACRO
-	MOV AH, 00h
-	MOV AL, 03h
-	INT 10h
-ENDM
-
-SETCURSOR MACRO
-	MOV AH, 02h
-	MOV BH, 00h
-	MOV DH, 12d
-	MOV DL, 39d
-	INT 10H
-ENDM
-
 .data
 	MSG1	dB	10, 13, 'Enter an alphanumeric character: $'
 
 .code
+	; Initialize Data Segment
 	MOV AX, @DATA
 	MOV DS, AX
 
-	CLRSCR
+	; Clear Screen
+	MOV AH, 00h
+	MOV AL, 03h
+	INT 10h
 	
 	; Print Message in Data Segment
 	LEA DX, MSG1
@@ -47,7 +37,12 @@ Conversion:
 	CMP AX, 00h
 	JNE Conversion
 	
-	SETCURSOR
+	; Set Cursor to Center of the Screen
+	MOV AH, 02h
+	MOV BH, 00h
+	MOV DH, 12d
+	MOV DL, 39d
+	INT 10H
 
 Display:
 	POP DX
@@ -60,6 +55,7 @@ Display:
 	JMP Display
 
 Exit:
+	; Terminate the Program
 	MOV AH, 4Ch
 	INT 21h
 END
